@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>Calculator</title>
+    <style>
+    body{
+        margin-top:10%;
+        text-align:center;
+        font-family:Verdana;
+        
+    }
+    form{
+        border: 2px solid black ;
+        margin-left: 400px;
+        margin-right: 400px;
+        background-color: lightblue;
+    }
+    button{
+        width : 40px;
+        height :35px;
+        margin: 3px;
+        font-size: 20px;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="app" />
+
+
+    <script type="text/babel">
+
+      class App extends React.Component {
+    state = {
+    input1: 0,
+    input2: 0
+  };
+
+  
+  updateInputValue = (e) => {
+    
+    const { name, value } = e.target;
+    this.setState({
+      [name]: parseInt(value)
+    });
+  };
+
+  add = () => {
+    const { input1, input2 } = this.state;
+    alert("The Entered numbers are "+(input1)+", "+(input2) );
+  };
+
+  subtract = () => {
+    const { input1, input2 } = this.state;
+   
+    alert("The Entered numbers are "+(input1)+", "+(input2) );
+  };
+
+  mul = () => {
+    const { input1, input2 } = this.state;
+    alert("The Entered numbers are "+(input1)+", "+(input2) );
+  };
+
+  div = () => {
+    const { input1, input2 } = this.state;
+    alert("The Entered numbers are "+(input1)+", "+(input2) );
+   
+  };
+
+        render() {
+          return (
+            <form>
+              <h1>Simple Calculator</h1>
+              <p>Input 1:</p>
+              <input type="number" value={this.state.inputValue} name="input1" placeholder="first value" 
+               onChange={(e) => this.updateInputValue(e)}/>
+              <p>Input 2:</p>
+              <input type="number" value={this.state.inputValue} name="input2" placeholder="second value"
+               onChange={(e) => this.updateInputValue(e)}/>
+              <br></br>
+              <br></br>
+              <button onClick={this.add}>+</button>
+              <button onClick={this.subtract}>-</button>
+              <button onClick={this.mul}>*</button>
+              <button onClick={this.div}>/</button>
+              <br></br>
+              <br></br>
+              Output is :<output name="res"></output>
+              
+              <p></p>
+            </form>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, document.querySelector("#app"));
+
+    </script>
+  </body>
+</html>
