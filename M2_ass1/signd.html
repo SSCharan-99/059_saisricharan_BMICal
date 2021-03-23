@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <title>Login Page</title>
+        <style>
+            #app{
+    margin-top:10%;
+    text-align:center;
+    font-family:Verdana;
+    border: 2px solid black ;
+    margin-left: 400px;
+    margin-right: 400px;
+    background-color: lightyellow;
+    
+}
+
+
+button{
+    width : 100px;
+    height :35px;
+    margin: 3px;
+    font-size: 20px;
+    margin:4px;
+    
+}
+
+            #winner {
+                font-size: 15px;
+                color: green;
+
+
+            }
+
+            
+        </style>
+    </head>
+    <body>
+        <div id="app" />
+        <script type="text/babel">
+            class Winner extends React.Component {
+                render() {
+                    return (
+                        <div id="winner">
+                            Welcome {this.props.name} !
+                        </div>
+                    );
+                }
+            }
+
+            class App extends React.Component {
+
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        uname:"",
+                        password:"",
+                        ans: ""
+                    };
+                }
+
+                render() {
+                    if (this.state.uname !="" && this.state.password!="" && this.state.ans!= "" ) {
+                        return this.renderWin();
+                    } else {
+                        return this.renderProblem();
+                    }
+                }
+
+                renderProblem() {
+                    return (
+                    <div >
+                <p>Username:</p>
+                <input onKeyPress={this.inputKeyPress} onChange={this.updateResponse1} value={this.state.uname} type="text" name="username" placeholder="User Name" />
+                <br></br>
+                <p>Password:</p>
+                <input onKeyPress={this.inputKeyPress} onChange={this.updateResponse2} value={this.state.password} type="password" name="password" placeholder="Password" />
+                <br></br>
+                <br></br>
+                
+                <button onClick={this.resetGame} onChange={this.updateResponse3} value={this.state.ans}>Submit</button>
+                <br></br>
+                <p>Not Registered yet??</p>
+                <button>SignUp</button>
+                        </div>
+                    );
+                }
+
+                renderWin() {
+                    const name = this.state.uname;
+                    return (
+                        <Winner name={name} />
+                    );
+                }
+
+                updateResponse1 = (event) => {
+                    this.setState({ uname: event.target.value });
+                   
+                }
+        
+                updateResponse2 = (event) => {
+                    this.setState({ password: event.target.value });
+                }
+
+                updateResponse3 = (event) => {
+                    this.setState({ ans: event.target.value });
+                }
+
+           
+
+                resetGame = (event) => {
+                    this.setState({
+                        
+                        ans: this.state.uname
+                        
+                    });
+                }
+            }
+
+            ReactDOM.render((
+                <div>
+                    <App />
+                </div>
+            ), document.querySelector("#app"));
+        </script>
+    </body>
+</html>
