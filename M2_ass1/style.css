@@ -1,0 +1,25 @@
+#app{
+    margin-top:10%;
+    text-align:center;
+    font-family:Verdana;
+    border: 2px solid black ;
+    margin-left: 400px;
+    margin-right: 400px;
+    background-color: lightyellow;
+    
+}
+
+
+button{
+    width : 40px;
+    height :35px;
+    margin: 3px;
+    font-size: 20px;
+    margin:4px;
+    
+}
+
+#reset{
+  width:70px;
+  font-size: 15px;
+}
