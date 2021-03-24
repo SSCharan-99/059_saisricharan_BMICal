@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <title>To Do List</title>
+        <h1 style="text-align:center; color:brown; font-family:Verdana">To Do List</h1>
+        <link rel="stylesheet" href="style.css">
+     
+    </head>
+    <body>
+        <div id="app" />
+        <script type="text/babel">
+           
+
+            class App extends React.Component {
+
+                constructor(props) {
+                    super(props);
+                    this.state = {
+                        task:[],
+                        input:"",
+                        res:"",
+                        score:0
+                         
+                    };
+                }
+
+                render() {
+                   return(
+                       <div class="container">
+                        <h1>Tasks</h1>
+                        <ul>
+                            {this.state.task.map((task, i)=>
+                            <li id="list" key={i}>
+                                {task}
+                                <br></br>
+                                <button onClick={(event)=>{this.delete(event,i)}}>DeleteTask</button>
+                            </li>
+                            )}
+                        </ul>
+                        <div>
+                        <input onKeyPress={this.keyPress} onChange={this.updateChange} value = {this.state.input} type="text" placeholder="Enter the task" />
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <button onClick={this.insert} value = {this.state.res}  >Insert</button>
+                        <h3>List of tasks:{this.state.score}</h3>
+                        </div>
+                    </div>
+                   );
+                }
+
+                updateChange=(e)=>{
+                    this.setState({
+                        input: e.target.value
+                    });
+                }
+
+                keyPress=(e)=>{
+                    
+                    if(e.key=="Enter"){
+
+                        this.setState({
+                        
+                        task: [...this.state.task, this.state.input],
+                        input:"",
+                        score:this.state.score+1
+                        
+                        
+                        
+                        
+                        
+                    });
+                   
+
+                    }
+                   
+                }
+
+
+                insert = () => {
+                    this.setState({
+                        
+                        task: [...this.state.task, this.state.input],
+                        input:"",
+                        score:this.state.score+1
+                        
+                        
+                    });
+                }
+          
+
+         
+
+            delete=(event,i) =>{
+                var newtask =[...this.state.task]
+                newtask.splice(i,1)
+                this.setState({
+                task: newtask,
+                score:this.state.score-1
+                
+                });
+                }
+
+                
+               
+            }
+
+            ReactDOM.render((
+                <div>
+                    <App />
+                </div>
+            ), document.querySelector("#app"));
+        </script>
+    </body>
+</html>
